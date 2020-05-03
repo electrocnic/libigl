@@ -78,6 +78,7 @@ properly to target OSs with binary files.
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <cstring>
 
 namespace igl {
     namespace ply {
@@ -323,6 +324,7 @@ properly to target OSs with binary files.
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <cstring>
 //#include "ply.h"
 
 
@@ -435,6 +437,18 @@ inline int check_types();
 /*  Writing  */
 /*************/
 
+inline char* strdup (const char* s)
+{
+  size_t slen = strlen(s);
+  char* result = (char*)malloc(slen + 1);
+  if(result == NULL)
+  {
+    return NULL;
+  }
+
+  memcpy(result, s, slen+1);
+  return result;
+}
 
 /******************************************************************************
 Given a file pointer, get ready to write PLY data to the file.
